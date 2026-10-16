@@ -1,0 +1,201 @@
+{
+  "info": {
+    "_postman_id": "c1f7743d-6b83-4a12-8e1f-723a1a459b9e",
+    "name": "User Management REST API - Module 5",
+    "description": "Postman Collection for testing Spring Boot User Management REST API CRUD operations (Module 5). Base URL: http://localhost:8080/api/users",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create User (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"age\": 29\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        },
+        "description": "Creates a new user record. Returns 201 Created with saved UserResponseDTO."
+      },
+      "response": []
+    },
+    {
+      "name": "2. Get All Users (GET)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        },
+        "description": "Retrieves the full list of all registered users. Returns 200 OK."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get User By ID (GET)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "1"
+          ]
+        },
+        "description": "Retrieves a single user by primary key ID. Returns 200 OK or 404 Not Found."
+      },
+      "response": []
+    },
+    {
+      "name": "4. Update User By ID (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Johnathan Doe Updated\",\n  \"email\": \"johnathan.doe@example.com\",\n  \"age\": 30\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "1"
+          ]
+        },
+        "description": "Updates an existing user's details. Returns 200 OK with updated UserResponseDTO."
+      },
+      "response": []
+    },
+    {
+      "name": "5. Delete User By ID (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "1"
+          ]
+        },
+        "description": "Deletes a user by ID. Returns 200 OK with confirmation message."
+      },
+      "response": []
+    },
+    {
+      "name": "6. Validation Failure Test (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"email\": \"not-a-valid-email\",\n  \"age\": 0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        },
+        "description": "Tests validation error handling. Returns 400 Bad Request with field-by-field error descriptions."
+      },
+      "response": []
+    },
+    {
+      "name": "7. User Not Found Test (GET)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "999"
+          ]
+        },
+        "description": "Tests 404 error handling for non-existent user ID."
+      },
+      "response": []
+    }
+  ]
+}
